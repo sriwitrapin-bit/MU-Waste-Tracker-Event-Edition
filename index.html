@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบบันทึกและแดชบอร์ดขยะกิจกรรมพิเศษ - มหาวิทยาลัยมหิดล</title>
+    <title>MU Waste Tracker: Event Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -65,10 +65,10 @@
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h1 class="text-lg sm:text-xl font-bold text-slate-900 leading-tight">ระบบบริหารจัดการขยะกิจกรรมพิเศษ</h1>
-                            <span class="hidden sm:inline-block bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-medium">Mahidol Eco</span>
+                            <h1 class="text-lg sm:text-xl font-bold text-slate-900 leading-tight">MU Waste Tracker</h1>
+                            <span class="hidden sm:inline-block bg-emerald-100/50 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-200/50">Event Edition</span>
                         </div>
-                        <p class="text-xs text-slate-500 hidden sm:block">ระบบบันทึกและติดตามปริมาณขยะ มหาวิทยาลัยมหิดล</p>
+                        <p class="text-xs text-slate-500 hidden sm:block">ระบบบันทึกและติดตามปริมาณขยะกิจกรรม มหาวิทยาลัยมหิดล</p>
                     </div>
                 </div>
 
@@ -125,79 +125,79 @@
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-1.5">ส่วนงาน / คณะผู้รับผิดชอบ <span class="text-red-500">*</span></label>
                             <select id="formDepartment" required onchange="toggleFormDepartmentOther()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors">
-    <option value="" disabled selected>-- เลือกส่วนงาน --</option>
-    <option value="คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)">คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)">คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)</option>
-    <option value="คณะทันตแพทยศาสตร์ (DT)">คณะทันตแพทยศาสตร์ (DT)</option>
-    <option value="คณะเทคนิคการแพทย์ (MT)">คณะเทคนิคการแพทย์ (MT)</option>
-    <option value="คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)">คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)</option>
-    <option value="คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)">คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)">คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)</option>
-    <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)</option>
-    <option value="คณะแพทยศาสตร์ศิริราชพยาบาล (SI)">คณะแพทยศาสตร์ศิริราชพยาบาล (SI)</option>
-    <option value="คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)">คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)</option>
-    <option value="คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)">คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)</option>
-    <option value="คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)">คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)">คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)</option>
-    <option value="คณะวิศวกรรมศาสตร์ (EG)">คณะวิศวกรรมศาสตร์ (EG)</option>
-    <option value="คณะเวชศาสตร์เขตร้อน (TM)">คณะเวชศาสตร์เขตร้อน (TM)</option>
-    <option value="คณะศิลปศาสตร์ (LA)">คณะศิลปศาสตร์ (LA)</option>
-    <option value="คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)">คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)</option>
-    <option value="คณะสัตวแพทยศาสตร์ (VS)">คณะสัตวแพทยศาสตร์ (VS)</option>
-    <option value="คณะสาธารณสุขศาสตร์ (PH)">คณะสาธารณสุขศาสตร์ (PH)</option>
-    <option value="คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)">คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)</option>
-    <option value="โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)">โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)</option>
-    <option value="โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)">โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)</option>
-    <option value="โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)">โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)</option>
-    <option value="โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)">โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)</option>
-    <option value="โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)">โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)</option>
-    <option value="บัณฑิตวิทยาลัย (GR)">บัณฑิตวิทยาลัย (GR)</option>
-    <option value="โรงเรียนสาธิตนานาชาติ (MUIDS)">โรงเรียนสาธิตนานาชาติ (MUIDS)</option>
-    <option value="วิทยาเขตกาญจนบุรี (KA)">วิทยาเขตกาญจนบุรี (KA)</option>
-    <option value="วิทยาลัยการจัดการ (CMMU)">วิทยาลัยการจัดการ (CMMU)</option>
-    <option value="วิทยาลัยดุริยางคศิลป์ (MS)">วิทยาลัยดุริยางคศิลป์ (MS)</option>
-    <option value="วิทยาลัยนานาชาติ (IC)">วิทยาลัยนานาชาติ (IC)</option>
-    <option value="วิทยาลัยราชสุดา (RS)">วิทยาลัยราชสุดา (RS)</option>
-    <option value="วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)">วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)</option>
-    <option value="วิทยาลัยศาสนศึกษา (CRS)">วิทยาลัยศาสนศึกษา (CRS)</option>
-    <option value="ศูนย์การแพทย์กาญจนาภิเษก (GJ)">ศูนย์การแพทย์กาญจนาภิเษก (GJ)</option>
-    <option value="ศูนย์จิตตปัญญาศึกษา (CE)">ศูนย์จิตตปัญญาศึกษา (CE)</option>
-    <option value="ศูนย์ตรวจสอบภายใน (OPIA )">ศูนย์ตรวจสอบภายใน (OPIA )</option>
-    <option value="ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)">ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)</option>
-    <option value="ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)">ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)</option>
-    <option value="ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)">ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)</option>
-    <option value="ศูนย์บริหารจัดการความเสี่ยง (OPRM)">ศูนย์บริหารจัดการความเสี่ยง (OPRM)</option>
-    <option value="ศูนย์บริหารสินทรัพย์ (OPAM)">ศูนย์บริหารสินทรัพย์ (OPAM)</option>
-    <option value="ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)">ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)</option>
-    <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)">ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)</option>
-    <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)">ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)</option>
-    <option value="ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)">ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)</option>
-    <option value="ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)">ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)</option>
-    <option value="สถาบันชีววิทยาศาสตร์โมเลกุล (MB)">สถาบันชีววิทยาศาสตร์โมเลกุล (MB)</option>
-    <option value="สถาบันนวัตกรรมการเรียนรู้ (IL)">สถาบันนวัตกรรมการเรียนรู้ (IL)</option>
-    <option value="สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)">สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)</option>
-    <option value="สถาบันพัฒนาสุขภาพอาเซียน (AIHD)">สถาบันพัฒนาสุขภาพอาเซียน (AIHD)</option>
-    <option value="สถาบันโภชนาการ (INMU)">สถาบันโภชนาการ (INMU)</option>
-    <option value="สถาบันวิจัยประชากรและสังคม (IPSR)">สถาบันวิจัยประชากรและสังคม (IPSR)</option>
-    <option value="สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)">สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)</option>
-    <option value="สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)">สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)</option>
-    <option value="สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)">สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)</option>
-    <option value="สภาคณาจารย์ (FS)">สภาคณาจารย์ (FS)</option>
-    <option value="สำนักงานสภามหาวิทยาลัย (UC)">สำนักงานสภามหาวิทยาลัย (UC)</option>
-    <option value="สำนักงานอธิการบดี กองกฎหมาย (ORLA)">สำนักงานอธิการบดี กองกฎหมาย (ORLA)</option>
-    <option value="สำนักงานอธิการบดี กองกายภาพแล้วสิ่งแวดล้อม (OPPE)">สำนักงานอธิการบดี กองกายภาพแล้วสิ่งแวดล้อม (OPPE)</option>
-    <option value="สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)">สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)</option>
-    <option value="สำนักงานอธิการบดี กองคลัง (OPFA)">สำนักงานอธิการบดี กองคลัง (OPFA)</option>
-    <option value="สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)">สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)</option>
-    <option value="สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)">สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)</option>
-    <option value="สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)">สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)</option>
-    <option value="สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)">สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)</option>
-    <option value="สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)">สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)</option>
-    <option value="สำนักงานอธิการบดี กองแผนงาน (OPPL)">สำนักงานอธิการบดี กองแผนงาน (OPPL)</option>
-    <option value="หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)">หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)</option>
-    <option value="other">อื่นๆ (โปรดระบุ)</option>
-</select>
+                                <option value="" disabled selected>-- เลือกส่วนงาน --</option>
+                                <option value="คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)">คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)</option>
+                                <option value="คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)">คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)</option>
+                                <option value="คณะทันตแพทยศาสตร์ (DT)">คณะทันตแพทยศาสตร์ (DT)</option>
+                                <option value="คณะเทคนิคการแพทย์ (MT)">คณะเทคนิคการแพทย์ (MT)</option>
+                                <option value="คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)">คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)</option>
+                                <option value="คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)">คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)</option>
+                                <option value="คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)">คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)</option>
+                                <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)</option>
+                                <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)</option>
+                                <option value="คณะแพทยศาสตร์ศิริราชพยาบาล (SI)">คณะแพทยศาสตร์ศิริราชพยาบาล (SI)</option>
+                                <option value="คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)">คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)</option>
+                                <option value="คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)">คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)</option>
+                                <option value="คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)">คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)</option>
+                                <option value="คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)">คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)</option>
+                                <option value="คณะวิศวกรรมศาสตร์ (EG)">คณะวิศวกรรมศาสตร์ (EG)</option>
+                                <option value="คณะเวชศาสตร์เขตร้อน (TM)">คณะเวชศาสตร์เขตร้อน (TM)</option>
+                                <option value="คณะศิลปศาสตร์ (LA)">คณะศิลปศาสตร์ (LA)</option>
+                                <option value="คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)">คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)</option>
+                                <option value="คณะสัตวแพทยศาสตร์ (VS)">คณะสัตวแพทยศาสตร์ (VS)</option>
+                                <option value="คณะสาธารณสุขศาสตร์ (PH)">คณะสาธารณสุขศาสตร์ (PH)</option>
+                                <option value="คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)">คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)</option>
+                                <option value="โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)">โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)</option>
+                                <option value="โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)">โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)</option>
+                                <option value="โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)">โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)</option>
+                                <option value="โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)">โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)</option>
+                                <option value="โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)">โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)</option>
+                                <option value="บัณฑิตวิทยาลัย (GR)">บัณฑิตวิทยาลัย (GR)</option>
+                                <option value="โรงเรียนสาธิตนานาชาติ (MUIDS)">โรงเรียนสาธิตนานาชาติ (MUIDS)</option>
+                                <option value="วิทยาเขตกาญจนบุรี (KA)">วิทยาเขตกาญจนบุรี (KA)</option>
+                                <option value="วิทยาลัยการจัดการ (CMMU)">วิทยาลัยการจัดการ (CMMU)</option>
+                                <option value="วิทยาลัยดุริยางคศิลป์ (MS)">วิทยาลัยดุริยางคศิลป์ (MS)</option>
+                                <option value="วิทยาลัยนานาชาติ (IC)">วิทยาลัยนานาชาติ (IC)</option>
+                                <option value="วิทยาลัยราชสุดา (RS)">วิทยาลัยราชสุดา (RS)</option>
+                                <option value="วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)">วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)</option>
+                                <option value="วิทยาลัยศาสนศึกษา (CRS)">วิทยาลัยศาสนศึกษา (CRS)</option>
+                                <option value="ศูนย์การแพทย์กาญจนาภิเษก (GJ)">ศูนย์การแพทย์กาญจนาภิเษก (GJ)</option>
+                                <option value="ศูนย์จิตตปัญญาศึกษา (CE)">ศูนย์จิตตปัญญาศึกษา (CE)</option>
+                                <option value="ศูนย์ตรวจสอบภายใน (OPIA)">ศูนย์ตรวจสอบภายใน (OPIA)</option>
+                                <option value="ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)">ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)</option>
+                                <option value="ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)">ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)</option>
+                                <option value="ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)">ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)</option>
+                                <option value="ศูนย์บริหารจัดการความเสี่ยง (OPRM)">ศูนย์บริหารจัดการความเสี่ยง (OPRM)</option>
+                                <option value="ศูนย์บริหารสินทรัพย์ (OPAM)">ศูนย์บริหารสินทรัพย์ (OPAM)</option>
+                                <option value="ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)">ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)</option>
+                                <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)">ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)</option>
+                                <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)">ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)</option>
+                                <option value="ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)">ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)</option>
+                                <option value="ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)">ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)</option>
+                                <option value="สถาบันชีววิทยาศาสตร์โมเลกุล (MB)">สถาบันชีววิทยาศาสตร์โมเลกุล (MB)</option>
+                                <option value="สถาบันนวัตกรรมการเรียนรู้ (IL)">สถาบันนวัตกรรมการเรียนรู้ (IL)</option>
+                                <option value="สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)">สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)</option>
+                                <option value="สถาบันพัฒนาสุขภาพอาเซียน (AIHD)">สถาบันพัฒนาสุขภาพอาเซียน (AIHD)</option>
+                                <option value="สถาบันโภชนาการ (INMU)">สถาบันโภชนาการ (INMU)</option>
+                                <option value="สถาบันวิจัยประชากรและสังคม (IPSR)">สถาบันวิจัยประชากรและสังคม (IPSR)</option>
+                                <option value="สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)">สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)</option>
+                                <option value="สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)">สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)</option>
+                                <option value="สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)">สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)</option>
+                                <option value="สภาคณาจารย์ (FS)">สภาคณาจารย์ (FS)</option>
+                                <option value="สำนักงานสภามหาวิทยาลัย (UC)">สำนักงานสภามหาวิทยาลัย (UC)</option>
+                                <option value="สำนักงานอธิการบดี กองกฎหมาย (ORLA)">สำนักงานอธิการบดี กองกฎหมาย (ORLA)</option>
+                                <option value="สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)">สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)</option>
+                                <option value="สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)">สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)</option>
+                                <option value="สำนักงานอธิการบดี กองคลัง (OPFA)">สำนักงานอธิการบดี กองคลัง (OPFA)</option>
+                                <option value="สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)">สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)</option>
+                                <option value="สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)">สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)</option>
+                                <option value="สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)">สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)</option>
+                                <option value="สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)">สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)</option>
+                                <option value="สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)">สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)</option>
+                                <option value="สำนักงานอธิการบดี กองแผนงาน (OPPL)">สำนักงานอธิการบดี กองแผนงาน (OPPL)</option>
+                                <option value="หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)">หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)</option>
+                                <option value="other">อื่นๆ (โปรดระบุ)</option>
+                            </select>
                             <input type="text" id="formDepartmentOther" placeholder="พิมพ์ชื่อส่วนงาน / หน่วยงานของคุณ" class="w-full bg-blue-50 border border-blue-200 rounded-xl px-4 py-2.5 text-sm text-blue-900 focus:ring-2 focus:ring-blue-500 mt-2 hidden transition-all">
                         </div>
                         <div>
@@ -359,80 +359,80 @@
                     <!-- Department Filter -->
                     <div>
                         <label class="block text-xs font-medium text-slate-500 mb-1">ส่วนงาน / คณะ</label>
-                        <select id="formDepartment" required onchange="toggleFormDepartmentOther()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors">
-    <option value="" disabled selected>-- เลือกส่วนงาน --</option>
-    <option value="คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)">คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)">คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)</option>
-    <option value="คณะทันตแพทยศาสตร์ (DT)">คณะทันตแพทยศาสตร์ (DT)</option>
-    <option value="คณะเทคนิคการแพทย์ (MT)">คณะเทคนิคการแพทย์ (MT)</option>
-    <option value="คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)">คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)</option>
-    <option value="คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)">คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)">คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)</option>
-    <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)</option>
-    <option value="คณะแพทยศาสตร์ศิริราชพยาบาล (SI)">คณะแพทยศาสตร์ศิริราชพยาบาล (SI)</option>
-    <option value="คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)">คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)</option>
-    <option value="คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)">คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)</option>
-    <option value="คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)">คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)</option>
-    <option value="คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)">คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)</option>
-    <option value="คณะวิศวกรรมศาสตร์ (EG)">คณะวิศวกรรมศาสตร์ (EG)</option>
-    <option value="คณะเวชศาสตร์เขตร้อน (TM)">คณะเวชศาสตร์เขตร้อน (TM)</option>
-    <option value="คณะศิลปศาสตร์ (LA)">คณะศิลปศาสตร์ (LA)</option>
-    <option value="คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)">คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)</option>
-    <option value="คณะสัตวแพทยศาสตร์ (VS)">คณะสัตวแพทยศาสตร์ (VS)</option>
-    <option value="คณะสาธารณสุขศาสตร์ (PH)">คณะสาธารณสุขศาสตร์ (PH)</option>
-    <option value="คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)">คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)</option>
-    <option value="โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)">โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)</option>
-    <option value="โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)">โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)</option>
-    <option value="โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)">โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)</option>
-    <option value="โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)">โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)</option>
-    <option value="โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)">โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)</option>
-    <option value="บัณฑิตวิทยาลัย (GR)">บัณฑิตวิทยาลัย (GR)</option>
-    <option value="โรงเรียนสาธิตนานาชาติ (MUIDS)">โรงเรียนสาธิตนานาชาติ (MUIDS)</option>
-    <option value="วิทยาเขตกาญจนบุรี (KA)">วิทยาเขตกาญจนบุรี (KA)</option>
-    <option value="วิทยาลัยการจัดการ (CMMU)">วิทยาลัยการจัดการ (CMMU)</option>
-    <option value="วิทยาลัยดุริยางคศิลป์ (MS)">วิทยาลัยดุริยางคศิลป์ (MS)</option>
-    <option value="วิทยาลัยนานาชาติ (IC)">วิทยาลัยนานาชาติ (IC)</option>
-    <option value="วิทยาลัยราชสุดา (RS)">วิทยาลัยราชสุดา (RS)</option>
-    <option value="วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)">วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)</option>
-    <option value="วิทยาลัยศาสนศึกษา (CRS)">วิทยาลัยศาสนศึกษา (CRS)</option>
-    <option value="ศูนย์การแพทย์กาญจนาภิเษก (GJ)">ศูนย์การแพทย์กาญจนาภิเษก (GJ)</option>
-    <option value="ศูนย์จิตตปัญญาศึกษา (CE)">ศูนย์จิตตปัญญาศึกษา (CE)</option>
-    <option value="ศูนย์ตรวจสอบภายใน (OPIA )">ศูนย์ตรวจสอบภายใน (OPIA )</option>
-    <option value="ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)">ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)</option>
-    <option value="ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)">ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)</option>
-    <option value="ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)">ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)</option>
-    <option value="ศูนย์บริหารจัดการความเสี่ยง (OPRM)">ศูนย์บริหารจัดการความเสี่ยง (OPRM)</option>
-    <option value="ศูนย์บริหารสินทรัพย์ (OPAM)">ศูนย์บริหารสินทรัพย์ (OPAM)</option>
-    <option value="ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)">ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)</option>
-    <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)">ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)</option>
-    <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)">ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)</option>
-    <option value="ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)">ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)</option>
-    <option value="ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)">ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)</option>
-    <option value="สถาบันชีววิทยาศาสตร์โมเลกุล (MB)">สถาบันชีววิทยาศาสตร์โมเลกุล (MB)</option>
-    <option value="สถาบันนวัตกรรมการเรียนรู้ (IL)">สถาบันนวัตกรรมการเรียนรู้ (IL)</option>
-    <option value="สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)">สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)</option>
-    <option value="สถาบันพัฒนาสุขภาพอาเซียน (AIHD)">สถาบันพัฒนาสุขภาพอาเซียน (AIHD)</option>
-    <option value="สถาบันโภชนาการ (INMU)">สถาบันโภชนาการ (INMU)</option>
-    <option value="สถาบันวิจัยประชากรและสังคม (IPSR)">สถาบันวิจัยประชากรและสังคม (IPSR)</option>
-    <option value="สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)">สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)</option>
-    <option value="สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)">สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)</option>
-    <option value="สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)">สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)</option>
-    <option value="สภาคณาจารย์ (FS)">สภาคณาจารย์ (FS)</option>
-    <option value="สำนักงานสภามหาวิทยาลัย (UC)">สำนักงานสภามหาวิทยาลัย (UC)</option>
-    <option value="สำนักงานอธิการบดี กองกฎหมาย (ORLA)">สำนักงานอธิการบดี กองกฎหมาย (ORLA)</option>
-    <option value="สำนักงานอธิการบดี กองกายภาพแล้วสิ่งแวดล้อม (OPPE)">สำนักงานอธิการบดี กองกายภาพแล้วสิ่งแวดล้อม (OPPE)</option>
-    <option value="สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)">สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)</option>
-    <option value="สำนักงานอธิการบดี กองคลัง (OPFA)">สำนักงานอธิการบดี กองคลัง (OPFA)</option>
-    <option value="สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)">สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)</option>
-    <option value="สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)">สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)</option>
-    <option value="สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)">สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)</option>
-    <option value="สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)">สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)</option>
-    <option value="สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)">สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)</option>
-    <option value="สำนักงานอธิการบดี กองแผนงาน (OPPL)">สำนักงานอธิการบดี กองแผนงาน (OPPL)</option>
-    <option value="หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)">หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)</option>
-    <option value="other">อื่นๆ (โปรดระบุ)</option>
-</select>
+                        <select id="filterDepartment" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="all">ทุกส่วนงาน/คณะ</option>
+                            <option value="คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)">คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)</option>
+                            <option value="คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)">คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)</option>
+                            <option value="คณะทันตแพทยศาสตร์ (DT)">คณะทันตแพทยศาสตร์ (DT)</option>
+                            <option value="คณะเทคนิคการแพทย์ (MT)">คณะเทคนิคการแพทย์ (MT)</option>
+                            <option value="คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)">คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)</option>
+                            <option value="คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)">คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)</option>
+                            <option value="คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)">คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)</option>
+                            <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)</option>
+                            <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)</option>
+                            <option value="คณะแพทยศาสตร์ศิริราชพยาบาล (SI)">คณะแพทยศาสตร์ศิริราชพยาบาล (SI)</option>
+                            <option value="คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)">คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)</option>
+                            <option value="คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)">คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)</option>
+                            <option value="คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)">คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)</option>
+                            <option value="คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)">คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)</option>
+                            <option value="คณะวิศวกรรมศาสตร์ (EG)">คณะวิศวกรรมศาสตร์ (EG)</option>
+                            <option value="คณะเวชศาสตร์เขตร้อน (TM)">คณะเวชศาสตร์เขตร้อน (TM)</option>
+                            <option value="คณะศิลปศาสตร์ (LA)">คณะศิลปศาสตร์ (LA)</option>
+                            <option value="คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)">คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)</option>
+                            <option value="คณะสัตวแพทยศาสตร์ (VS)">คณะสัตวแพทยศาสตร์ (VS)</option>
+                            <option value="คณะสาธารณสุขศาสตร์ (PH)">คณะสาธารณสุขศาสตร์ (PH)</option>
+                            <option value="คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)">คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)</option>
+                            <option value="โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)">โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)</option>
+                            <option value="โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)">โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)</option>
+                            <option value="โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)">โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)</option>
+                            <option value="โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)">โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)</option>
+                            <option value="โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)">โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)</option>
+                            <option value="บัณฑิตวิทยาลัย (GR)">บัณฑิตวิทยาลัย (GR)</option>
+                            <option value="โรงเรียนสาธิตนานาชาติ (MUIDS)">โรงเรียนสาธิตนานาชาติ (MUIDS)</option>
+                            <option value="วิทยาเขตกาญจนบุรี (KA)">วิทยาเขตกาญจนบุรี (KA)</option>
+                            <option value="วิทยาลัยการจัดการ (CMMU)">วิทยาลัยการจัดการ (CMMU)</option>
+                            <option value="วิทยาลัยดุริยางคศิลป์ (MS)">วิทยาลัยดุริยางคศิลป์ (MS)</option>
+                            <option value="วิทยาลัยนานาชาติ (IC)">วิทยาลัยนานาชาติ (IC)</option>
+                            <option value="วิทยาลัยราชสุดา (RS)">วิทยาลัยราชสุดา (RS)</option>
+                            <option value="วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)">วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)</option>
+                            <option value="วิทยาลัยศาสนศึกษา (CRS)">วิทยาลัยศาสนศึกษา (CRS)</option>
+                            <option value="ศูนย์การแพทย์กาญจนาภิเษก (GJ)">ศูนย์การแพทย์กาญจนาภิเษก (GJ)</option>
+                            <option value="ศูนย์จิตตปัญญาศึกษา (CE)">ศูนย์จิตตปัญญาศึกษา (CE)</option>
+                            <option value="ศูนย์ตรวจสอบภายใน (OPIA)">ศูนย์ตรวจสอบภายใน (OPIA)</option>
+                            <option value="ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)">ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)</option>
+                            <option value="ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)">ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)</option>
+                            <option value="ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)">ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)</option>
+                            <option value="ศูนย์บริหารจัดการความเสี่ยง (OPRM)">ศูนย์บริหารจัดการความเสี่ยง (OPRM)</option>
+                            <option value="ศูนย์บริหารสินทรัพย์ (OPAM)">ศูนย์บริหารสินทรัพย์ (OPAM)</option>
+                            <option value="ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)">ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)</option>
+                            <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)">ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)</option>
+                            <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)">ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)</option>
+                            <option value="ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)">ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)</option>
+                            <option value="ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)">ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)</option>
+                            <option value="สถาบันชีววิทยาศาสตร์โมเลกุล (MB)">สถาบันชีววิทยาศาสตร์โมเลกุล (MB)</option>
+                            <option value="สถาบันนวัตกรรมการเรียนรู้ (IL)">สถาบันนวัตกรรมการเรียนรู้ (IL)</option>
+                            <option value="สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)">สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)</option>
+                            <option value="สถาบันพัฒนาสุขภาพอาเซียน (AIHD)">สถาบันพัฒนาสุขภาพอาเซียน (AIHD)</option>
+                            <option value="สถาบันโภชนาการ (INMU)">สถาบันโภชนาการ (INMU)</option>
+                            <option value="สถาบันวิจัยประชากรและสังคม (IPSR)">สถาบันวิจัยประชากรและสังคม (IPSR)</option>
+                            <option value="สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)">สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)</option>
+                            <option value="สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)">สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)</option>
+                            <option value="สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)">สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)</option>
+                            <option value="สภาคณาจารย์ (FS)">สภาคณาจารย์ (FS)</option>
+                            <option value="สำนักงานสภามหาวิทยาลัย (UC)">สำนักงานสภามหาวิทยาลัย (UC)</option>
+                            <option value="สำนักงานอธิการบดี กองกฎหมาย (ORLA)">สำนักงานอธิการบดี กองกฎหมาย (ORLA)</option>
+                            <option value="สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)">สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)</option>
+                            <option value="สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)">สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)</option>
+                            <option value="สำนักงานอธิการบดี กองคลัง (OPFA)">สำนักงานอธิการบดี กองคลัง (OPFA)</option>
+                            <option value="สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)">สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)</option>
+                            <option value="สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)">สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)</option>
+                            <option value="สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)">สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)</option>
+                            <option value="สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)">สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)</option>
+                            <option value="สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)">สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)</option>
+                            <option value="สำนักงานอธิการบดี กองแผนงาน (OPPL)">สำนักงานอธิการบดี กองแผนงาน (OPPL)</option>
+                            <option value="หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)">หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)</option>
+                            <option value="other">อื่นๆ</option>
+                        </select>
                     </div>
 
                     <!-- Search Filter -->
@@ -449,6 +449,9 @@
                 
                 <button onclick="resetFilters()" class="text-sm text-slate-500 hover:text-emerald-600 underline whitespace-nowrap">
                     ล้างตัวกรอง
+                </button>
+                <button onclick="clearAllRecords()" class="text-sm text-red-500 hover:text-red-700 underline whitespace-nowrap">
+                    ล้างข้อมูลทั้งหมด
                 </button>
             </div>
         </div>
@@ -578,52 +581,23 @@
 
     <script>
         // --- State Management ---
-        let records = [];
+        let records = JSON.parse(localStorage.getItem('mu_waste_records') || '[]');
         let pieChartInstance = null;
         let barChartInstance = null;
 
-        // Initialize with some mock data for demonstration
-        function initMockData() {
-            const today = new Date().toISOString().split('T')[0];
-            const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-            
-            records.push({
-                id: Date.now().toString(),
-                date: today,
-                activity: "MU Open House 2026",
-                location: "อาคารสิริวิทยา",
-                department: "กองกิจการนักศึกษา (OPSA)",
-                recorder: "สมชาย รักโลก",
-                waste: {
-                    pet: 15.5, glass: 5.0, straw: 2.2, bottleCap: 1.5, otherRecycle: 10.0,
-                    plasticBox: 8.5, skewers: 1.5, cutlery: 3.0,
-                    plantBox: 4.5, food: 12.0,
-                    landfill: 20.0, infectious: 1.0
-                },
-                totals: {
-                    recycle: 34.2, energy: 13.0, compost: 16.5, landfill: 21.0, all: 84.7
-                },
-                remarks: "แยกขวดน้ำได้เยอะมาก"
-            });
-            
-            records.push({
-                id: (Date.now() - 1000).toString(),
-                date: yesterday,
-                activity: "ประชุมวิชาการสิ่งแวดล้อม",
-                location: "คณะสิ่งแวดล้อมฯ",
-                department: "คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)",
-                recorder: "สมหญิง รักษ์ดี",
-                waste: {
-                    pet: 2.5, glass: 1.0, straw: 0.1, bottleCap: 0.2, otherRecycle: 5.0,
-                    plasticBox: 1.5, skewers: 0, cutlery: 0.5,
-                    plantBox: 10.0, food: 5.0,
-                    landfill: 3.0, infectious: 0
-                },
-                totals: {
-                    recycle: 8.8, energy: 2.0, compost: 15.0, landfill: 3.0, all: 28.8
-                },
-                remarks: "ใช้ภาชนะชานอ้อยเป็นหลัก"
-            });
+        function saveRecords() {
+            localStorage.setItem('mu_waste_records', JSON.stringify(records));
+        }
+
+        function clearAllRecords() {
+            if (records.length === 0) {
+                showModal('ไม่มีข้อมูล', 'ปัจจุบันไม่มีข้อมูลขยะในระบบ', 'info');
+                return;
+            }
+            records = [];
+            saveRecords();
+            applyFilters();
+            showModal('ล้างข้อมูลสำเร็จ', 'ข้อมูลถูกล้างเรียบร้อยแล้ว พร้อมสำหรับการบันทึกใหม่', 'success');
         }
 
         // --- Custom Modal ---
@@ -712,7 +686,7 @@
             calcFormTotal();
         }
 
-        async function submitRecordForm(e) {
+        function submitRecordForm(e) {
             e.preventDefault();
             
             const deptSelect = document.getElementById('formDepartment').value;
@@ -724,66 +698,40 @@
                 return;
             }
 
-            // แสดงสถานะกำลังโหลด
-            showModal('กำลังบันทึก', 'โปรดรอสักครู่ ระบบกำลังส่งข้อมูลเข้า Google Sheet...', 'info');
-
-            // 1. เตรียมข้อมูลที่จะส่งไป Google Sheet
-            const payload = {
+            const record = {
+                id: Date.now().toString(),
                 date: document.getElementById('formDate').value,
                 activity: document.getElementById('formActivity').value,
                 location: document.getElementById('formLocation').value,
                 department: deptFinal,
                 recorder: document.getElementById('formRecorder').value,
-                totalWeight: totals.all,
+                waste: {
+                    pet: getNumVal('w_pet'),
+                    glass: getNumVal('w_glass'),
+                    straw: getNumVal('w_straw'),
+                    bottleCap: getNumVal('w_bottle_cap'),
+                    otherRecycle: getNumVal('w_recycle_other'),
+                    plasticBox: getNumVal('w_plastic_box'),
+                    skewers: getNumVal('w_skewers'),
+                    cutlery: getNumVal('w_cutlery'),
+                    plantBox: getNumVal('w_plant_box'),
+                    food: getNumVal('w_food'),
+                    landfill: getNumVal('w_landfill'),
+                    infectious: getNumVal('w_infectious')
+                },
+                totals: totals,
                 remarks: document.getElementById('formRemarks').value
             };
 
-            // 📍📍 นำ URL ที่ได้จาก Apps Script ของชีทใหม่ มาใส่ตรงนี้ 📍📍
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysX2hI78_-kaY9g1Wwbw6iKxBPkJeonYupg0w_hCxm5mG9lOlqCgOGHGddDW16QGMZ6w/exec'; 
-
-            try {
-                // 2. ส่งข้อมูลไปที่ Google Sheet
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8',
-                    }
-                });
-
-                // 3. บันทึกลงตัวแปร local ด้วย เพื่อให้กราฟในหน้า Dashboard ยังแสดงข้อมูลได้
-                const record = {
-                    id: Date.now().toString(),
-                    date: payload.date,
-                    activity: payload.activity,
-                    location: payload.location,
-                    department: payload.department,
-                    recorder: payload.recorder,
-                    waste: {
-                        pet: getNumVal('w_pet'), glass: getNumVal('w_glass'), straw: getNumVal('w_straw'), bottleCap: getNumVal('w_bottle_cap'), otherRecycle: getNumVal('w_recycle_other'),
-                        plasticBox: getNumVal('w_plastic_box'), skewers: getNumVal('w_skewers'), cutlery: getNumVal('w_cutlery'),
-                        plantBox: getNumVal('w_plant_box'), food: getNumVal('w_food'),
-                        landfill: getNumVal('w_landfill'), infectious: getNumVal('w_infectious')
-                    },
-                    totals: totals,
-                    remarks: payload.remarks
-                };
-                records.push(record);
-
-                // แจ้งเตือนเมื่อเสร็จสิ้น
-                showModal('บันทึกสำเร็จ', 'ข้อมูลถูกบันทึกเข้าสู่ระบบและ Google Sheet เรียบร้อยแล้ว', 'success');
-                clearForm();
-
-            } catch (error) {
-                console.error('Error!', error.message);
-                showModal('เกิดข้อผิดพลาด', 'ไม่สามารถบันทึกข้อมูลลง Google Sheet ได้ กรุณาลองใหม่อีกครั้ง', 'error');
-            }
+            records.push(record);
+            saveRecords();
+            showModal('บันทึกสำเร็จ', 'ข้อมูลถูกบันทึกเข้าสู่ระบบเรียบร้อยแล้ว', 'success');
+            clearForm();
         }
 
         function deleteRecord(id) {
-            // Note: Since no confirm() allowed, we delete directly or use custom modal.
-            // For simplicity in this demo, we'll delete directly and show a success message.
             records = records.filter(r => r.id !== id);
+            saveRecords();
             applyFilters();
             showModal('ลบข้อมูลสำเร็จ', 'ลบรายการขยะเรียบร้อยแล้ว', 'info');
         }
@@ -973,10 +921,10 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('formDate').value = today;
             
-            initMockData(); // Load demo data
+            // Render initial view with saved data
+            applyFilters();
         };
 
     </script>
 </body>
 </html>
-
