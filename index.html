@@ -35,6 +35,22 @@
         .waste-input-group:focus-within {
             transform: translateY(-2px);
         }
+        
+        /* Modal transitions */
+        .modal-overlay {
+            backdrop-filter: blur(4px);
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+        }
+        .modal-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal-hidden .modal-content {
+            transform: scale(0.95) translateY(10px);
+        }
     </style>
 </head>
 <body class="min-h-screen text-slate-800 flex flex-col">
@@ -58,7 +74,14 @@
 
                 <!-- Action Buttons (Dynamic) -->
                 <div id="navActionButtons" class="flex items-center gap-2 sm:gap-3">
-                    <!-- Buttons will be injected here by JS -->
+                    <button onclick="switchView('dashboard')" id="btnGoDashboard" class="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors">
+                        <i class="ph-bold ph-chart-line-up"></i>
+                        <span class="hidden sm:inline">ดูแดชบอร์ด</span>
+                    </button>
+                    <button onclick="switchView('form')" id="btnGoForm" class="hidden items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
+                        <i class="ph-bold ph-plus-circle"></i>
+                        <span class="hidden sm:inline">บันทึกข้อมูลใหม่</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -124,55 +147,8 @@
                                 <option value="คณะสัตวแพทยศาสตร์ (VS)">คณะสัตวแพทยศาสตร์ (VS)</option>
                                 <option value="คณะสาธารณสุขศาสตร์ (PH)">คณะสาธารณสุขศาสตร์ (PH)</option>
                                 <option value="คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)">คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)</option>
-                                <option value="โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)">โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)</option>
-                                <option value="โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)">โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)</option>
-                                <option value="โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)">โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)</option>
-                                <option value="โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)">โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)</option>
-                                <option value="โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)">โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)</option>
                                 <option value="บัณฑิตวิทยาลัย (GR)">บัณฑิตวิทยาลัย (GR)</option>
-                                <option value="โรงเรียนสาธิตนานาชาติ (MUIDS)">โรงเรียนสาธิตนานาชาติ (MUIDS)</option>
-                                <option value="วิทยาเขตกาญจนบุรี (KA)">วิทยาเขตกาญจนบุรี (KA)</option>
-                                <option value="วิทยาลัยการจัดการ (CMMU)">วิทยาลัยการจัดการ (CMMU)</option>
-                                <option value="วิทยาลัยดุริยางคศิลป์ (MS)">วิทยาลัยดุริยางคศิลป์ (MS)</option>
                                 <option value="วิทยาลัยนานาชาติ (IC)">วิทยาลัยนานาชาติ (IC)</option>
-                                <option value="วิทยาลัยราชสุดา (RS)">วิทยาลัยราชสุดา (RS)</option>
-                                <option value="วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)">วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)</option>
-                                <option value="วิทยาลัยศาสนศึกษา (CRS)">วิทยาลัยศาสนศึกษา (CRS)</option>
-                                <option value="ศูนย์การแพทย์กาญจนาภิเษก (GJ)">ศูนย์การแพทย์กาญจนาภิเษก (GJ)</option>
-                                <option value="ศูนย์จิตตปัญญาศึกษา (CE)">ศูนย์จิตตปัญญาศึกษา (CE)</option>
-                                <option value="ศูนย์ตรวจสอบภายใน (OPIA)">ศูนย์ตรวจสอบภายใน (OPIA)</option>
-                                <option value="ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)">ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)</option>
-                                <option value="ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)">ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)</option>
-                                <option value="ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)">ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)</option>
-                                <option value="ศูนย์บริหารจัดการความเสี่ยง (OPRM)">ศูนย์บริหารจัดการความเสี่ยง (OPRM)</option>
-                                <option value="ศูนย์บริหารสินทรัพย์ (OPAM)">ศูนย์บริหารสินทรัพย์ (OPAM)</option>
-                                <option value="ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)">ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)</option>
-                                <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)">ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)</option>
-                                <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)">ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)</option>
-                                <option value="ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)">ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)</option>
-                                <option value="ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)">ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)</option>
-                                <option value="สถาบันชีววิทยาศาสตร์โมเลกุล (MB)">สถาบันชีววิทยาศาสตร์โมเลกุล (MB)</option>
-                                <option value="สถาบันนวัตกรรมการเรียนรู้ (IL)">สถาบันนวัตกรรมการเรียนรู้ (IL)</option>
-                                <option value="สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)">สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)</option>
-                                <option value="สถาบันพัฒนาสุขภาพอาเซียน (AIHD)">สถาบันพัฒนาสุขภาพอาเซียน (AIHD)</option>
-                                <option value="สถาบันโภชนาการ (INMU)">สถาบันโภชนาการ (INMU)</option>
-                                <option value="สถาบันวิจัยประชากรและสังคม (IPSR)">สถาบันวิจัยประชากรและสังคม (IPSR)</option>
-                                <option value="สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)">สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)</option>
-                                <option value="สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)">สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)</option>
-                                <option value="สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)">สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)</option>
-                                <option value="สภาคณาจารย์ (FS)">สภาคณาจารย์ (FS)</option>
-                                <option value="สำนักงานสภามหาวิทยาลัย (UC)">สำนักงานสภามหาวิทยาลัย (UC)</option>
-                                <option value="สำนักงานอธิการบดี กองกฎหมาย (ORLA)">สำนักงานอธิการบดี กองกฎหมาย (ORLA)</option>
-                                <option value="สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)">สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)</option>
-                                <option value="สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)">สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)</option>
-                                <option value="สำนักงานอธิการบดี กองคลัง (OPFA)">สำนักงานอธิการบดี กองคลัง (OPFA)</option>
-                                <option value="สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)">สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)</option>
-                                <option value="สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)">สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)</option>
-                                <option value="สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)">สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)</option>
-                                <option value="สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)">สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)</option>
-                                <option value="สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)">สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)</option>
-                                <option value="สำนักงานอธิการบดี กองแผนงาน (OPPL)">สำนักงานอธิการบดี กองแผนงาน (OPPL)</option>
-                                <option value="หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)">หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)</option>
                                 <option value="other">อื่นๆ (โปรดระบุ)</option>
                             </select>
                             <input type="text" id="formDepartmentOther" placeholder="พิมพ์ชื่อส่วนงาน / หน่วยงานของคุณ" class="w-full bg-blue-50 border border-blue-200 rounded-xl px-4 py-2.5 text-sm text-blue-900 focus:ring-2 focus:ring-blue-500 mt-2 hidden transition-all">
@@ -184,7 +160,6 @@
                     </div>
                 </section>
 
-                <!-- Waste Weights -->
                 <section>
                     <div class="flex items-center justify-between border-b-2 border-emerald-100 pb-2 mb-5">
                         <h4 class="text-base font-bold text-slate-800 flex items-center gap-2">
@@ -201,19 +176,23 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ขวด PET</label>
-                                    <input type="text" id="w_pet" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_pet" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ขวดแก้ว/กระป๋อง</label>
-                                    <input type="text" id="w_glass" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_glass" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">หลอดพลาสติก</label>
-                                    <input type="text" id="w_straw" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_straw" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
+                                    <label class="block text-xs font-medium text-slate-600 mb-1">ฝาขวดพลาสติก</label>
+                                    <input type="number" step="0.01" min="0" id="w_bottle_cap" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
+                                </div>
+                                <div class="waste-input-group col-span-2">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">อื่นๆ / กระดาษ</label>
-                                    <input type="text" id="w_recycle_other" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_recycle_other" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none">
                                 </div>
                             </div>
                         </div>
@@ -224,15 +203,15 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ภาชนะพลาสติก</label>
-                                    <input type="text" id="w_plastic_box" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_plastic_box" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ไม้เสียบอาหาร</label>
-                                    <input type="text" id="w_skewers" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_skewers" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ช้อนส้อมพลาสติก</label>
-                                    <input type="text" id="w_cutlery" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_cutlery" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
                                 </div>
                             </div>
                         </div>
@@ -243,11 +222,11 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ภาชนะเยื่อพืช/ชานอ้อย</label>
-                                    <input type="text" id="w_plant_box" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_plant_box" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">เศษอาหาร</label>
-                                    <input type="text" id="w_food" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_food" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none">
                                 </div>
                             </div>
                         </div>
@@ -258,11 +237,11 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ขยะทั่วไป</label>
-                                    <input type="text" id="w_landfill" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-slate-500 focus:ring-1 focus:ring-slate-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_landfill" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-slate-500 focus:ring-1 focus:ring-slate-500 outline-none">
                                 </div>
                                 <div class="waste-input-group">
                                     <label class="block text-xs font-medium text-slate-600 mb-1">ขยะติดเชื้อ / ชำระ</label>
-                                    <input type="text" id="w_infectious" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-slate-500 focus:ring-1 focus:ring-slate-500 outline-none">
+                                    <input type="number" step="0.01" min="0" id="w_infectious" oninput="calcFormTotal()" placeholder="0" class="waste-form-input w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-right text-slate-800 shadow-sm focus:border-slate-500 focus:ring-1 focus:ring-slate-500 outline-none">
                                 </div>
                             </div>
                         </div>
@@ -279,7 +258,7 @@
                             </div>
                         </div>
                         <div class="flex items-baseline gap-2">
-                            <span id="formTotalWeight" class="text-4xl font-bold text-emerald-400 tracking-tight">0.0</span>
+                            <span id="formTotalWeight" class="text-4xl font-bold text-emerald-400 tracking-tight">0.00</span>
                             <span class="text-lg text-slate-300 font-medium">กก.</span>
                         </div>
                     </div>
@@ -316,7 +295,7 @@
                     <h2 class="font-semibold text-slate-800 text-base min-w-max">ตัวกรองข้อมูล</h2>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow lg:max-w-3xl">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-grow lg:max-w-4xl w-full">
                     
                     <!-- Date Range Filter -->
                     <div class="flex items-end gap-2">
@@ -333,773 +312,534 @@
                     <!-- Department Filter -->
                     <div>
                         <label class="block text-xs font-medium text-slate-500 mb-1">ส่วนงาน / คณะ</label>
-                        <select id="filterDepartment" onchange="toggleFilterDepartmentOther()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <select id="filterDepartment" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                             <option value="all">ทุกส่วนงาน/คณะ</option>
                             <option value="คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)">คณะกายภาพบำบัด (PT) 1 (วิทยาเขตศาลายา)</option>
-                            <option value="คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)">คณะกายภาพบำบัด (PT) 2 (วิทยาเขตบางกอกน้อย)</option>
                             <option value="คณะทันตแพทยศาสตร์ (DT)">คณะทันตแพทยศาสตร์ (DT)</option>
-                            <option value="คณะเทคนิคการแพทย์ (MT)">คณะเทคนิคการแพทย์ (MT)</option>
                             <option value="คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)">คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ICT)</option>
-                            <option value="คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)">คณะพยาบาลศาสตร์ (NS) 1 (วิทยาเขตศาลายา)</option>
-                            <option value="คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)">คณะพยาบาลศาสตร์ (NS) 2 (วิทยาเขตบางกอกน้อย)</option>
-                            <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 1 (วิทยาเขตศาลายา)</option>
-                            <option value="คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)">คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี (RAMA) 2 (วิทยาเขตพญาไท)</option>
-                            <option value="คณะแพทยศาสตร์ศิริราชพยาบาล (SI)">คณะแพทยศาสตร์ศิริราชพยาบาล (SI)</option>
-                            <option value="คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)">คณะเภสัชศาสตร์ (PY) 1 (วิทยาเขตพญาไท)</option>
-                            <option value="คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)">คณะเภสัชศาสตร์ (PY) 2 (วิทยาเขตศาลายา)</option>
                             <option value="คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)">คณะวิทยาศาสตร์ (SC) 1 (วิทยาเขตศาลายา)</option>
-                            <option value="คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)">คณะวิทยาศาสตร์ (SC) 2 (วิทยาเขตพญาไท)</option>
                             <option value="คณะวิศวกรรมศาสตร์ (EG)">คณะวิศวกรรมศาสตร์ (EG)</option>
-                            <option value="คณะเวชศาสตร์เขตร้อน (TM)">คณะเวชศาสตร์เขตร้อน (TM)</option>
-                            <option value="คณะศิลปศาสตร์ (LA)">คณะศิลปศาสตร์ (LA)</option>
-                            <option value="คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)">คณะสังคมศาสตร์และมนุษยศาสตร์ (SH)</option>
-                            <option value="คณะสัตวแพทยศาสตร์ (VS)">คณะสัตวแพทยศาสตร์ (VS)</option>
-                            <option value="คณะสาธารณสุขศาสตร์ (PH)">คณะสาธารณสุขศาสตร์ (PH)</option>
                             <option value="คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)">คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)</option>
-                            <option value="โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)">โครงการจัดตั้งวิทยาเขตนครสวรรค์ (NA)</option>
-                            <option value="โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)">โครงการจัดตั้งวิทยาเขตอำนาจเจริญ (AM)</option>
-                            <option value="โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)">โครงการจัดตั้งศูนย์พัฒนาอุตสาหกรรมชีวภาพ (Pilot Plant)</option>
-                            <option value="โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)">โครงการจัดตั้งสถาบันสิทธิมนุษยชนและสันติศึกษา (IHRP)</option>
-                            <option value="โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)">โครงการจัดตั้งสถาบันอุทยานธรรมสิรีรุกขชาติ (Siree)</option>
-                            <option value="บัณฑิตวิทยาลัย (GR)">บัณฑิตวิทยาลัย (GR)</option>
-                            <option value="โรงเรียนสาธิตนานาชาติ (MUIDS)">โรงเรียนสาธิตนานาชาติ (MUIDS)</option>
-                            <option value="วิทยาเขตกาญจนบุรี (KA)">วิทยาเขตกาญจนบุรี (KA)</option>
-                            <option value="วิทยาลัยการจัดการ (CMMU)">วิทยาลัยการจัดการ (CMMU)</option>
-                            <option value="วิทยาลัยดุริยางคศิลป์ (MS)">วิทยาลัยดุริยางคศิลป์ (MS)</option>
                             <option value="วิทยาลัยนานาชาติ (IC)">วิทยาลัยนานาชาติ (IC)</option>
-                            <option value="วิทยาลัยราชสุดา (RS)">วิทยาลัยราชสุดา (RS)</option>
-                            <option value="วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)">วิทยาลัยวิทยาศาสตร์และเทคโนโลยีการกีฬา (SS)</option>
-                            <option value="วิทยาลัยศาสนศึกษา (CRS)">วิทยาลัยศาสนศึกษา (CRS)</option>
-                            <option value="ศูนย์การแพทย์กาญจนาภิเษก (GJ)">ศูนย์การแพทย์กาญจนาภิเษก (GJ)</option>
-                            <option value="ศูนย์จิตตปัญญาศึกษา (CE)">ศูนย์จิตตปัญญาศึกษา (CE)</option>
-                            <option value="ศูนย์ตรวจสอบภายใน (OPIA)">ศูนย์ตรวจสอบภายใน (OPIA)</option>
-                            <option value="ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)">ศูนย์ธรรมาภิบาลข้อมูลและยุทธศาสตร์อัจฉริยะ (DGSI)</option>
-                            <option value="ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)">ศูนย์บริการสนับสนุนสำหรับนักศึกษาพิการ (Mahidol DSS)</option>
-                            <option value="ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)">ศูนย์บริหารความปลอดภัยอาชีวอนามัยและสภาพแวดล้อมในการทำงาน (COSHEM)</option>
-                            <option value="ศูนย์บริหารจัดการความเสี่ยง (OPRM)">ศูนย์บริหารจัดการความเสี่ยง (OPRM)</option>
-                            <option value="ศูนย์บริหารสินทรัพย์ (OPAM)">ศูนย์บริหารสินทรัพย์ (OPAM)</option>
-                            <option value="ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)">ศูนย์ส่งเสริมการเรียนรู้แบบบรูณาการชีวิต (CLiL)</option>
-                            <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)">ศูนย์ส่งเสริมจริยธรรมการวิจัยในคน (SP)</option>
-                            <option value="ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)">ศูนย์ส่งเสริมจริยธรรมการวิจัย (OPSP)</option>
-                            <option value="ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)">ศูนย์สัตว์ทดลองแห่งชาติ (NLAC)</option>
-                            <option value="ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)">ศูนย์อำนวยการด้านข้อมูลส่วนบุคคลมหาวิทยาลัยมหิดล (PDPA)</option>
-                            <option value="สถาบันชีววิทยาศาสตร์โมเลกุล (MB)">สถาบันชีววิทยาศาสตร์โมเลกุล (MB)</option>
-                            <option value="สถาบันนวัตกรรมการเรียนรู้ (IL)">สถาบันนวัตกรรมการเรียนรู้ (IL)</option>
-                            <option value="สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)">สถาบันบริหารจัดการเทคโนโลยีและนวัตกรรม (iNT)</option>
-                            <option value="สถาบันพัฒนาสุขภาพอาเซียน (AIHD)">สถาบันพัฒนาสุขภาพอาเซียน (AIHD)</option>
-                            <option value="สถาบันโภชนาการ (INMU)">สถาบันโภชนาการ (INMU)</option>
-                            <option value="สถาบันวิจัยประชากรและสังคม (IPSR)">สถาบันวิจัยประชากรและสังคม (IPSR)</option>
-                            <option value="สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)">สถาบันวิจัยภาษาและวัฒนธรรมเอเชีย (RILCA)</option>
-                            <option value="สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)">สถาบันวิทยาศาสตร์การวิเคราะห์และตรวจสารในการกีฬา (ANDI)</option>
-                            <option value="สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)">สถาบันแห่งชาติเพื่อการพัฒนาเด็กและครอบครัว (CF)</option>
-                            <option value="สภาคณาจารย์ (FS)">สภาคณาจารย์ (FS)</option>
-                            <option value="สำนักงานสภามหาวิทยาลัย (UC)">สำนักงานสภามหาวิทยาลัย (UC)</option>
-                            <option value="สำนักงานอธิการบดี กองกฎหมาย (ORLA)">สำนักงานอธิการบดี กองกฎหมาย (ORLA)</option>
-                            <option value="สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)">สำนักงานอธิการบดี กองกายภาพและสิ่งแวดล้อม (OPPE)</option>
-                            <option value="สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)">สำนักงานอธิการบดี กองกิจการนักศึกษา (OPSA)</option>
-                            <option value="สำนักงานอธิการบดี กองคลัง (OPFA)">สำนักงานอธิการบดี กองคลัง (OPFA)</option>
-                            <option value="สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)">สำนักงานอธิการบดี กองทรัพยากรบุคคล (OPHR)</option>
-                            <option value="สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)">สำนักงานอธิการบดี กองเทคโนโลยีสารสนเทศ (OPIT)</option>
-                            <option value="สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)">สำนักงานอธิการบดี กองบริหารการศึกษา (OPEA)</option>
-                            <option value="สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)">สำนักงานอธิการบดี กองบริหารงานทั่วไป (OPGA)</option>
-                            <option value="สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)">สำนักงานอธิการบดี กองบริหารงานวิจัย (OPRA)</option>
-                            <option value="สำนักงานอธิการบดี กองแผนงาน (OPPL)">สำนักงานอธิการบดี กองแผนงาน (OPPL)</option>
-                            <option value="หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)">หอสมุดและคลังความรู้มหาวิทยาลัยมหิดล (MULKC)</option>
-                            <option value="other">อื่นๆ (โปรดระบุ)</option>
+                            <option value="other">อื่นๆ</option>
                         </select>
-                        <input type="text" id="filterDepartmentOther" onkeyup="applyFilters()" placeholder="พิมพ์ชื่อส่วนงานอื่นๆ..." class="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 mt-1 hidden transition-all">
+                    </div>
+
+                    <!-- Search Filter -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-500 mb-1">ค้นหากิจกรรม</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                                <i class="ph ph-magnifying-glass text-slate-400"></i>
+                            </div>
+                            <input type="text" id="filterSearch" oninput="applyFilters()" placeholder="ชื่อกิจกรรม..." class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
                     </div>
                 </div>
-
-                <button onclick="resetFilters()" class="text-xs text-slate-500 hover:text-emerald-600 underline text-center lg:text-right min-w-max mt-2 lg:mt-0">
-                    รีเซ็ตตัวกรอง
+                
+                <button onclick="resetFilters()" class="text-sm text-slate-500 hover:text-emerald-600 underline whitespace-nowrap">
+                    ล้างตัวกรอง
                 </button>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            
-            <!-- Card 1: Total Waste -->
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 relative overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                <div>
-                    <div class="flex items-center justify-between text-slate-500 mb-2">
-                        <span class="text-xs font-medium uppercase tracking-wider">ขยะรวมทั้งหมด</span>
-                        <div class="p-2 bg-emerald-50 text-emerald-600 rounded-lg"><i class="ph-fill ph-scales text-xl"></i></div>
-                    </div>
-                    <div class="flex items-baseline gap-1.5">
-                        <span class="text-4xl font-bold text-slate-900" id="kpiTotal">0</span>
-                        <span class="text-sm font-medium text-slate-500">กก.</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 space-y-1">
-                    <p class="font-medium text-slate-700">ผลรวมน้ำหนักขยะทุกประเภท</p>
-                    <p class="text-[11px] text-slate-400">สูตร: ผลรวม (ขยะรีไซเคิล + พลังงาน + ปุ๋ย + ฝังกลบ)</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            <!-- Total -->
+            <div class="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl p-5 text-white shadow-md relative overflow-hidden">
+                <i class="ph-fill ph-scales absolute -bottom-4 -right-4 text-6xl text-white/10"></i>
+                <h3 class="text-emerald-100 text-sm font-medium mb-1">ขยะรวมทั้งหมด</h3>
+                <div class="flex items-baseline gap-1">
+                    <span id="dashTotal" class="text-3xl font-bold">0.0</span>
+                    <span class="text-sm text-emerald-200">กก.</span>
                 </div>
             </div>
-
-            <!-- Card 2: Waste Diversion Rate -->
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 relative overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                <div>
-                    <div class="flex items-center justify-between text-slate-500 mb-2">
-                        <span class="text-xs font-medium uppercase tracking-wider">อัตราหมุนเวียนขยะ</span>
-                        <div class="p-2 bg-blue-50 text-blue-600 rounded-lg"><i class="ph-fill ph-arrows-clockwise text-xl"></i></div>
-                    </div>
-                    <div class="flex items-baseline gap-1.5">
-                        <span class="text-4xl font-bold text-slate-900" id="kpiDiversion">0</span>
-                        <span class="text-sm font-medium text-slate-500">%</span>
-                    </div>
+            <!-- Recycle -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-slate-500 text-sm font-medium">รีไซเคิล</h3>
+                    <div class="p-1.5 bg-blue-50 text-blue-600 rounded-lg"><i class="ph-fill ph-recycle text-lg"></i></div>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 space-y-1">
-                    <p class="font-medium text-slate-700">สัดส่วนขยะที่นำกลับมาใช้ประโยชน์</p>
-                    <p class="text-[11px] text-slate-400">สูตร: (รีไซเคิล + พลังงาน + ปุ๋ย) ÷ ขยะรวมทั้งหมด × 100</p>
+                <div class="flex items-baseline gap-1">
+                    <span id="dashRecycle" class="text-2xl font-bold text-slate-800">0.0</span>
+                    <span class="text-xs text-slate-400">กก.</span>
                 </div>
             </div>
-
-            <!-- Card 3: Landfill Rate -->
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 relative overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                <div>
-                    <div class="flex items-center justify-between text-slate-500 mb-2">
-                        <span class="text-xs font-medium uppercase tracking-wider">อัตราขยะไปหลุมฝังกลบ</span>
-                        <div class="p-2 bg-rose-50 text-rose-600 rounded-lg"><i class="ph-fill ph-trash text-xl"></i></div>
-                    </div>
-                    <div class="flex items-baseline gap-1.5">
-                        <span class="text-4xl font-bold text-slate-900" id="kpiLandfillRate">0</span>
-                        <span class="text-sm font-medium text-slate-500">%</span>
-                    </div>
+            <!-- Energy -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-slate-500 text-sm font-medium">พลังงาน (RDF)</h3>
+                    <div class="p-1.5 bg-orange-50 text-orange-600 rounded-lg"><i class="ph-fill ph-fire text-lg"></i></div>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 space-y-1">
-                    <p class="font-medium text-slate-700">สัดส่วนขยะทั่วไปและติดเชื้อที่ต้องกำจัด</p>
-                    <p class="text-[11px] text-slate-400">สูตร: (ขยะทั่วไป + ขยะติดเชื้อ) ÷ ขยะรวมทั้งหมด × 100</p>
+                <div class="flex items-baseline gap-1">
+                    <span id="dashEnergy" class="text-2xl font-bold text-slate-800">0.0</span>
+                    <span class="text-xs text-slate-400">กก.</span>
                 </div>
             </div>
-
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-            
-            <!-- Chart 1: Donut Waste Categories -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center justify-between">
-                        <span>สัดส่วนประเภทขยะ</span>
-                        <i class="ph-fill ph-chart-pie-slice text-blue-500"></i>
-                    </h3>
-                    <p class="text-xs text-slate-500 mb-4">จำแนกตามปลายทางการจัดการ</p>
+            <!-- Compost -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-slate-500 text-sm font-medium">ทำปุ๋ย/อินทรีย์</h3>
+                    <div class="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg"><i class="ph-fill ph-leaf text-lg"></i></div>
                 </div>
-                <div class="relative min-h-[260px] flex items-center justify-center">
-                    <canvas id="categoryDonutChart"></canvas>
+                <div class="flex items-baseline gap-1">
+                    <span id="dashCompost" class="text-2xl font-bold text-slate-800">0.0</span>
+                    <span class="text-xs text-slate-400">กก.</span>
                 </div>
             </div>
-
-            <!-- Chart 2: Monthly Waste Trend -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 lg:col-span-2 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center justify-between">
-                        <span>แนวโน้มปริมาณขยะตามช่วงเวลา</span>
-                        <i class="ph-fill ph-chart-line-up text-emerald-500"></i>
-                    </h3>
-                    <p class="text-xs text-slate-500 mb-4">เปรียบเทียบขยะรวม vs ขยะที่นำกลับไปใช้ประโยชน์ได้ (กก.)</p>
+            <!-- Landfill -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-slate-500 text-sm font-medium">ฝังกลบ</h3>
+                    <div class="p-1.5 bg-slate-100 text-slate-600 rounded-lg"><i class="ph-fill ph-trash text-lg"></i></div>
                 </div>
-                <div class="relative min-h-[260px] w-full">
-                    <canvas id="trendAreaChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Chart 3: Top Departments Stacked Bar -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 lg:col-span-3 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center justify-between">
-                        <span>ปริมาณขยะแยกตามส่วนงาน/คณะ (5 อันดับแรก)</span>
-                        <i class="ph-fill ph-buildings text-indigo-500"></i>
-                    </h3>
-                    <p class="text-xs text-slate-500 mb-4">แสดงประเภทขยะสะสมแต่ละส่วนงาน</p>
-                </div>
-                <div class="relative min-h-[280px] w-full">
-                    <canvas id="departmentBarChart"></canvas>
+                <div class="flex items-baseline gap-1">
+                    <span id="dashLandfill" class="text-2xl font-bold text-slate-800">0.0</span>
+                    <span class="text-xs text-slate-400">กก.</span>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
-            <div class="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                        <div class="p-1.5 bg-emerald-50 rounded-lg"><i class="ph-fill ph-list-bullets text-emerald-600"></i></div>
-                        รายการบันทึกขยะกิจกรรมพิเศษ
-                    </h3>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 lg:col-span-1">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">สัดส่วนประเภทขยะ</h3>
+                <div class="relative h-64 w-full flex items-center justify-center">
+                    <canvas id="wastePieChart"></canvas>
+                    <div id="noDataPie" class="absolute inset-0 flex items-center justify-center bg-white/80 hidden">
+                        <span class="text-sm text-slate-400">ไม่มีข้อมูล</span>
+                    </div>
                 </div>
-                <span class="text-xs font-medium text-slate-500 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg">
-                    พบทั้งหมด <span id="tableRecordCount" class="text-slate-800 font-bold">0</span> รายการ
-                </span>
             </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 lg:col-span-2">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">ปริมาณขยะ 5 กิจกรรมล่าสุด</h3>
+                <div class="relative h-64 w-full">
+                    <canvas id="wasteBarChart"></canvas>
+                    <div id="noDataBar" class="absolute inset-0 flex items-center justify-center bg-white/80 hidden">
+                        <span class="text-sm text-slate-400">ไม่มีข้อมูล</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <div class="overflow-x-auto custom-scrollbar">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-slate-50 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-100">
-                            <th class="py-3.5 px-6">วันที่</th>
-                            <th class="py-3.5 px-6">ชื่อกิจกรรม</th>
-                            <th class="py-3.5 px-6">ส่วนงาน / คณะ</th>
-                            <th class="py-3.5 px-6 text-right">ขยะรวม (กก.)</th>
-                            <th class="py-3.5 px-6 text-center">% หมุนเวียนขยะ</th>
-                            <th class="py-3.5 px-6 text-center">จัดการ</th>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-base font-bold text-slate-800">ตารางข้อมูลการบันทึกขยะกิจกรรม</h3>
+                <span id="recordCount" class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">0 รายการ</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="text-xs text-slate-500 bg-slate-50 uppercase border-b border-slate-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 font-semibold whitespace-nowrap">วันที่</th>
+                            <th scope="col" class="px-6 py-4 font-semibold">กิจกรรม / ส่วนงาน</th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-right">รวม (กก.)</th>
+                            <th scope="col" class="px-6 py-4 font-semibold text-center">จัดการ</th>
                         </tr>
                     </thead>
-                    <tbody id="eventsTableBody" class="divide-y divide-slate-100 text-sm text-slate-700">
-                        <!-- Dynamic Content Inserted by JS -->
+                    <tbody id="dataTableBody" class="divide-y divide-slate-100">
+                        <!-- JS Will Populate This -->
                     </tbody>
                 </table>
+            </div>
+            <div id="emptyTableState" class="hidden py-12 text-center flex-col items-center justify-center text-slate-400">
+                <i class="ph-light ph-folder-open text-5xl mb-2 text-slate-300"></i>
+                <p>ไม่พบข้อมูลที่ตรงกับเงื่อนไข</p>
             </div>
         </div>
     </main>
 
-    <div id="detailModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scrollbar">
-            
-            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors">
-                <i class="ph-bold ph-x text-xl"></i>
+    <footer class="mt-auto py-6 text-center text-xs text-slate-400 bg-white border-t border-slate-200">
+        <p>&copy; 2026 Mahidol University. Special Event Waste Tracking System.</p>
+    </footer>
+
+    <!-- Custom Modal instead of alert() -->
+    <div id="customModal" class="fixed inset-0 z-50 flex items-center justify-center modal-hidden">
+        <div class="modal-overlay absolute inset-0 bg-slate-900/40" onclick="closeModal()"></div>
+        <div class="modal-content relative bg-white rounded-2xl shadow-2xl w-11/12 max-w-sm p-6 overflow-hidden">
+            <div id="modalIconContainer" class="w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto text-2xl">
+                <!-- Icon injected via JS -->
+            </div>
+            <h3 id="modalTitle" class="text-lg font-bold text-center text-slate-800 mb-2">Title</h3>
+            <p id="modalMessage" class="text-sm text-center text-slate-600 mb-6">Message goes here.</p>
+            <button onclick="closeModal()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-xl text-sm transition-colors focus:ring-2 focus:ring-slate-500 focus:outline-none">
+                ตกลง
             </button>
-
-            <div class="flex items-center gap-4 mb-6">
-                <div class="p-4 bg-emerald-100 text-emerald-700 rounded-2xl shadow-inner">
-                    <i class="ph-fill ph-file-text text-3xl"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-slate-900 leading-tight" id="modalActivityName">ชื่อกิจกรรม</h3>
-                    <p class="text-sm text-slate-500 mt-1" id="modalDeptAndDate">ส่วนงาน • วันที่</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 bg-slate-50 border border-slate-100 p-5 rounded-2xl mb-6 text-center">
-                <div>
-                    <span class="block text-xs font-medium text-slate-500 mb-1">น้ำหนักขยะรวมทั้งหมด</span>
-                    <span class="text-2xl font-bold text-emerald-600" id="modalTotal">0 กก.</span>
-                </div>
-                <div>
-                    <span class="block text-xs font-medium text-slate-500 mb-1">ผู้บันทึกข้อมูล</span>
-                    <span class="text-base font-bold text-slate-800 truncate block px-2" id="modalRecorder">-</span>
-                </div>
-            </div>
-
-            <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
-                <i class="ph-fill ph-chart-pie-slice text-blue-500"></i> สถิติจำแนกตามประเภทขยะ
-            </h4>
-            
-            <div id="modalBreakdownList" class="space-y-3 mb-6">
-                <!-- Breakdown items will be rendered here -->
-            </div>
-
-            <div class="bg-amber-50/80 border border-amber-100 text-amber-800 p-4 rounded-2xl text-sm mb-6 flex gap-3">
-                <i class="ph-fill ph-warning-circle text-xl shrink-0 mt-0.5"></i>
-                <div>
-                    <strong class="block mb-0.5">หมายเหตุเพิ่มเติม:</strong>
-                    <span id="modalRemarks" class="text-amber-700/80">ไม่มี</span>
-                </div>
-            </div>
-
-            <div class="flex justify-end">
-                <button onclick="closeModal()" class="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-sm font-bold transition-colors shadow-md hover:shadow-lg">
-                    ปิดหน้าต่าง
-                </button>
-            </div>
         </div>
     </div>
 
-    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
-
     <script>
-        // State Management
-        let currentView = 'form'; // Start with form view
-        
-        function getStoredData() {
-            const stored = localStorage.getItem('mahidol_waste_events_data');
-            if (stored) {
-                try { return JSON.parse(stored); } catch(e) { console.error(e); }
-            }
-            return [];
-        }
-
-        let rawEventData = getStoredData();
-        let filteredData = [...rawEventData];
-        let donutChartInstance = null;
-        let trendChartInstance = null;
+        // --- State Management ---
+        let records = [];
+        let pieChartInstance = null;
         let barChartInstance = null;
 
-        window.onload = function() {
-            const dateInput = document.getElementById('formDate');
-            if (dateInput) dateInput.valueAsDate = new Date();
+        // Initialize with some mock data for demonstration
+        function initMockData() {
+            const today = new Date().toISOString().split('T')[0];
+            const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
             
-            initCharts();
-            renderNavigation();
-            switchView('form');
-        };
+            records.push({
+                id: Date.now().toString(),
+                date: today,
+                activity: "MU Open House 2026",
+                location: "อาคารสิริวิทยา",
+                department: "กองกิจการนักศึกษา (OPSA)",
+                recorder: "สมชาย รักโลก",
+                waste: {
+                    pet: 15.5, glass: 5.0, straw: 2.2, bottleCap: 1.5, otherRecycle: 10.0,
+                    plasticBox: 8.5, skewers: 1.5, cutlery: 3.0,
+                    plantBox: 4.5, food: 12.0,
+                    landfill: 20.0, infectious: 1.0
+                },
+                totals: {
+                    recycle: 34.2, energy: 13.0, compost: 16.5, landfill: 21.0, all: 84.7
+                },
+                remarks: "แยกขวดน้ำได้เยอะมาก"
+            });
+            
+            records.push({
+                id: (Date.now() - 1000).toString(),
+                date: yesterday,
+                activity: "ประชุมวิชาการสิ่งแวดล้อม",
+                location: "คณะสิ่งแวดล้อมฯ",
+                department: "คณะสิ่งแวดล้อมและทรัพยากรศาสตร์ (EN)",
+                recorder: "สมหญิง รักษ์ดี",
+                waste: {
+                    pet: 2.5, glass: 1.0, straw: 0.1, bottleCap: 0.2, otherRecycle: 5.0,
+                    plasticBox: 1.5, skewers: 0, cutlery: 0.5,
+                    plantBox: 10.0, food: 5.0,
+                    landfill: 3.0, infectious: 0
+                },
+                totals: {
+                    recycle: 8.8, energy: 2.0, compost: 15.0, landfill: 3.0, all: 28.8
+                },
+                remarks: "ใช้ภาชนะชานอ้อยเป็นหลัก"
+            });
+        }
 
-        function renderNavigation() {
-            const container = document.getElementById('navActionButtons');
-            if (currentView === 'form') {
-                container.innerHTML = `
-                    <button onclick="switchView('dashboard')" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-95">
-                        <i class="ph-bold ph-chart-line-up text-lg"></i>
-                        <span class="hidden sm:inline">ดูแดชบอร์ด</span>
-                        <span class="sm:hidden">แดชบอร์ด</span>
-                    </button>
-                `;
+        // --- Custom Modal ---
+        function showModal(title, message, type = 'info') {
+            const modal = document.getElementById('customModal');
+            const iconContainer = document.getElementById('modalIconContainer');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+
+            // Styling based on type
+            if (type === 'success') {
+                iconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto text-2xl bg-emerald-100 text-emerald-600';
+                iconContainer.innerHTML = '<i class="ph-bold ph-check"></i>';
+            } else if (type === 'error') {
+                iconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto text-2xl bg-red-100 text-red-600';
+                iconContainer.innerHTML = '<i class="ph-bold ph-x"></i>';
             } else {
-                container.innerHTML = `
-                    <button onclick="exportCSV()" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2.5 rounded-xl text-sm font-bold transition-colors hidden sm:inline-flex">
-                        <i class="ph-bold ph-download-simple text-lg"></i>
-                        <span>ส่งออก CSV</span>
-                    </button>
-                    <button onclick="switchView('form')" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-95">
-                        <i class="ph-bold ph-plus-circle text-lg"></i>
-                        <span class="hidden sm:inline">เพิ่มข้อมูลใหม่</span>
-                        <span class="sm:hidden">เพิ่ม</span>
-                    </button>
-                `;
+                iconContainer.className = 'w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto text-2xl bg-blue-100 text-blue-600';
+                iconContainer.innerHTML = '<i class="ph-bold ph-info"></i>';
+            }
+
+            modal.classList.remove('modal-hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('customModal');
+            modal.classList.add('modal-hidden');
+        }
+
+        // --- View Navigation ---
+        function switchView(view) {
+            const formView = document.getElementById('formView');
+            const dashboardView = document.getElementById('dashboardView');
+            const btnGoForm = document.getElementById('btnGoForm');
+            const btnGoDashboard = document.getElementById('btnGoDashboard');
+
+            if (view === 'dashboard') {
+                formView.classList.add('hidden');
+                dashboardView.classList.remove('hidden');
+                btnGoDashboard.classList.add('hidden');
+                btnGoForm.classList.remove('hidden');
+                btnGoForm.classList.add('flex'); // Ensure flex is applied when unhidden
+                applyFilters(); // Render dashboard data
+            } else {
+                dashboardView.classList.add('hidden');
+                formView.classList.remove('hidden');
+                btnGoForm.classList.add('hidden');
+                btnGoForm.classList.remove('flex');
+                btnGoDashboard.classList.remove('hidden');
             }
         }
 
-        function switchView(viewName) {
-            currentView = viewName;
-            const vForm = document.getElementById('formView');
-            const vDash = document.getElementById('dashboardView');
-
-            if (viewName === 'form') {
-                vDash.classList.add('hidden');
-                vForm.classList.remove('hidden');
-            } else {
-                vForm.classList.add('hidden');
-                vDash.classList.remove('hidden');
-                updateDashboard();
-            }
-            renderNavigation();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            const isSuccess = type === 'success';
-            toast.className = `flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl transform transition-all duration-300 translate-y-10 opacity-0 ${isSuccess ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white'}`;
-            toast.innerHTML = `
-                <i class="ph-fill ${isSuccess ? 'ph-check-circle' : 'ph-warning-circle'} text-2xl"></i>
-                <span class="font-medium text-sm">${message}</span>
-            `;
-            document.getElementById('toastContainer').appendChild(toast);
-            
-            setTimeout(() => { toast.classList.remove('translate-y-10', 'opacity-0'); }, 10);
-            setTimeout(() => {
-                toast.classList.add('translate-y-10', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
+        // --- Form Functions ---
         function toggleFormDepartmentOther() {
             const select = document.getElementById('formDepartment');
             const otherInput = document.getElementById('formDepartmentOther');
             if (select.value === 'other') {
                 otherInput.classList.remove('hidden');
-                otherInput.required = true;
+                otherInput.setAttribute('required', 'true');
             } else {
                 otherInput.classList.add('hidden');
-                otherInput.required = false;
+                otherInput.removeAttribute('required');
                 otherInput.value = '';
             }
         }
 
-        function toggleFilterDepartmentOther() {
-            const select = document.getElementById('filterDepartment');
-            const otherInput = document.getElementById('filterDepartmentOther');
-            if (select.value === 'other') {
-                otherInput.classList.remove('hidden');
-            } else {
-                otherInput.classList.add('hidden');
-                otherInput.value = '';
-                applyFilters();
-            }
-        }
-
-        function parseWasteInput(val) {
-            if (!val) return 0;
-            let clean = val.toString().replace(/,/g, '.').replace(/[^0-9\.\+\-]/g, '');
-            try {
-                let parts = clean.split('+');
-                return parts.reduce((acc, p) => acc + (parseFloat(p) || 0), 0);
-            } catch(e) {
-                return parseFloat(clean) || 0;
-            }
+        function getNumVal(id) {
+            const val = parseFloat(document.getElementById(id).value);
+            return isNaN(val) ? 0 : val;
         }
 
         function calcFormTotal() {
-            const inputs = document.querySelectorAll('.waste-form-input');
-            let total = 0;
-            inputs.forEach(i => { total += parseWasteInput(i.value); });
-            document.getElementById('formTotalWeight').textContent = total.toFixed(1);
+            const recycle = getNumVal('w_pet') + getNumVal('w_glass') + getNumVal('w_straw') + getNumVal('w_bottle_cap') + getNumVal('w_recycle_other');
+            const energy = getNumVal('w_plastic_box') + getNumVal('w_skewers') + getNumVal('w_cutlery');
+            const compost = getNumVal('w_plant_box') + getNumVal('w_food');
+            const landfill = getNumVal('w_landfill') + getNumVal('w_infectious');
+            
+            const total = recycle + energy + compost + landfill;
+            document.getElementById('formTotalWeight').textContent = total.toFixed(2);
+            return { recycle, energy, compost, landfill, all: total };
         }
 
         function clearForm() {
             document.getElementById('wasteModalForm').reset();
-            document.getElementById('formDate').valueAsDate = new Date();
-            document.getElementById('formDepartmentOther').classList.add('hidden');
-            document.getElementById('formDepartmentOther').required = false;
+            toggleFormDepartmentOther();
             calcFormTotal();
         }
 
         function submitRecordForm(e) {
             e.preventDefault();
-
-            let deptVal = document.getElementById('formDepartment').value;
-            if (deptVal === 'other') {
-                deptVal = document.getElementById('formDepartmentOther').value || 'อื่นๆ';
+            
+            const deptSelect = document.getElementById('formDepartment').value;
+            const deptFinal = deptSelect === 'other' ? document.getElementById('formDepartmentOther').value : deptSelect;
+            
+            const totals = calcFormTotal();
+            if (totals.all <= 0) {
+                showModal('ข้อมูลไม่ครบถ้วน', 'กรุณาระบุน้ำหนักขยะอย่างน้อย 1 ประเภท', 'error');
+                return;
             }
 
-            const newEvent = {
-                id: Date.now(),
+            const record = {
+                id: Date.now().toString(),
                 date: document.getElementById('formDate').value,
                 activity: document.getElementById('formActivity').value,
                 location: document.getElementById('formLocation').value,
-                department: deptVal,
+                department: deptFinal,
                 recorder: document.getElementById('formRecorder').value,
-                recycle: {
-                    pet: parseWasteInput(document.getElementById('w_pet').value),
-                    glass: parseWasteInput(document.getElementById('w_glass').value),
-                    straw: parseWasteInput(document.getElementById('w_straw').value),
-                    other: parseWasteInput(document.getElementById('w_recycle_other').value)
+                waste: {
+                    pet: getNumVal('w_pet'),
+                    glass: getNumVal('w_glass'),
+                    straw: getNumVal('w_straw'),
+                    bottleCap: getNumVal('w_bottle_cap'),
+                    otherRecycle: getNumVal('w_recycle_other'),
+                    plasticBox: getNumVal('w_plastic_box'),
+                    skewers: getNumVal('w_skewers'),
+                    cutlery: getNumVal('w_cutlery'),
+                    plantBox: getNumVal('w_plant_box'),
+                    food: getNumVal('w_food'),
+                    landfill: getNumVal('w_landfill'),
+                    infectious: getNumVal('w_infectious')
                 },
-                energy: {
-                    boxes: parseWasteInput(document.getElementById('w_plastic_box').value),
-                    skewers: parseWasteInput(document.getElementById('w_skewers').value),
-                    cutlery: parseWasteInput(document.getElementById('w_cutlery').value)
-                },
-                compost: {
-                    plant_box: parseWasteInput(document.getElementById('w_plant_box').value),
-                    food: parseWasteInput(document.getElementById('w_food').value)
-                },
-                other: {
-                    landfill: parseWasteInput(document.getElementById('w_landfill').value),
-                    infectious: parseWasteInput(document.getElementById('w_infectious').value)
-                },
-                remarks: document.getElementById('formRemarks').value || "-"
+                totals: totals,
+                remarks: document.getElementById('formRemarks').value
             };
 
-            rawEventData.unshift(newEvent);
-            localStorage.setItem('mahidol_waste_events_data', JSON.stringify(rawEventData));
-
+            records.push(record);
+            showModal('บันทึกสำเร็จ', 'ข้อมูลถูกบันทึกเข้าสู่ระบบเรียบร้อยแล้ว', 'success');
             clearForm();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            showToast('บันทึกข้อมูลเข้าสู่ระบบเรียบร้อยแล้ว!');
+        }
+
+        function deleteRecord(id) {
+            // Note: Since no confirm() allowed, we delete directly or use custom modal.
+            // For simplicity in this demo, we'll delete directly and show a success message.
+            records = records.filter(r => r.id !== id);
             applyFilters();
+            showModal('ลบข้อมูลสำเร็จ', 'ลบรายการขยะเรียบร้อยแล้ว', 'info');
         }
 
-        function sumObj(obj) {
-            if (!obj) return 0;
-            return Object.values(obj).reduce((a, b) => a + Number(b || 0), 0);
-        }
-
-        function calculateEventTotals(event) {
-            const recycleSum = sumObj(event.recycle);
-            const energySum = sumObj(event.energy);
-            const compostSum = sumObj(event.compost);
-            const otherSum = sumObj(event.other);
-            const total = recycleSum + energySum + compostSum + otherSum;
-            const diverted = recycleSum + energySum + compostSum;
-            const diversionRate = total > 0 ? (diverted / total) * 100 : 0;
-            return { recycleSum, energySum, compostSum, otherSum, total, diverted, diversionRate };
+        // --- Dashboard Functions ---
+        function resetFilters() {
+            document.getElementById('filterStartDate').value = '';
+            document.getElementById('filterEndDate').value = '';
+            document.getElementById('filterDepartment').value = 'all';
+            document.getElementById('filterSearch').value = '';
+            applyFilters();
         }
 
         function applyFilters() {
             const startDate = document.getElementById('filterStartDate').value;
             const endDate = document.getElementById('filterEndDate').value;
+            const dept = document.getElementById('filterDepartment').value;
+            const search = document.getElementById('filterSearch').value.toLowerCase();
+
+            let filtered = records.filter(r => {
+                let match = true;
+                if (startDate && r.date < startDate) match = false;
+                if (endDate && r.date > endDate) match = false;
+                if (dept !== 'all' && r.department !== dept) {
+                    // Check if 'other' is selected and department is not in the predefined list (approximate logic for demo)
+                    if(dept === 'other' && (r.department.includes('คณะ') || r.department.includes('วิทยาลัย'))) match = false;
+                    else if (dept !== 'other') match = false;
+                }
+                if (search && !r.activity.toLowerCase().includes(search) && !r.location.toLowerCase().includes(search)) match = false;
+                return match;
+            });
+
+            // Sort by date descending
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            updateDashboardUI(filtered);
+        }
+
+        function updateDashboardUI(data) {
+            // Update Summaries
+            let sumRecycle = 0, sumEnergy = 0, sumCompost = 0, sumLandfill = 0, sumTotal = 0;
             
-            let deptSelect = document.getElementById('filterDepartment').value;
-            let dept = deptSelect;
-            if (deptSelect === 'other') {
-                dept = document.getElementById('filterDepartmentOther').value.toLowerCase().trim();
-            }
-
-            filteredData = rawEventData.filter(item => {
-                let matchDate = true;
-                if (startDate) { matchDate = matchDate && (item.date >= startDate); }
-                if (endDate) { matchDate = matchDate && (item.date <= endDate); }
-
-                let matchDept = true;
-                if (deptSelect !== 'all') {
-                    if (deptSelect === 'other') {
-                        matchDept = item.department.toLowerCase().includes(dept);
-                    } else {
-                        matchDept = item.department.includes(deptSelect);
-                    }
-                }
-                
-                return matchDate && matchDept;
+            data.forEach(r => {
+                sumRecycle += r.totals.recycle;
+                sumEnergy += r.totals.energy;
+                sumCompost += r.totals.compost;
+                sumLandfill += r.totals.landfill;
+                sumTotal += r.totals.all;
             });
 
-            if(currentView === 'dashboard') {
-                updateDashboard();
-            }
-        }
+            document.getElementById('dashTotal').textContent = sumTotal.toFixed(2);
+            document.getElementById('dashRecycle').textContent = sumRecycle.toFixed(2);
+            document.getElementById('dashEnergy').textContent = sumEnergy.toFixed(2);
+            document.getElementById('dashCompost').textContent = sumCompost.toFixed(2);
+            document.getElementById('dashLandfill').textContent = sumLandfill.toFixed(2);
 
-        function resetFilters() {
-            document.getElementById('filterStartDate').value = '';
-            document.getElementById('filterEndDate').value = '';
-            document.getElementById('filterDepartment').value = 'all';
-            document.getElementById('filterDepartmentOther').value = '';
-            document.getElementById('filterDepartmentOther').classList.add('hidden');
+            // Update Table
+            const tbody = document.getElementById('dataTableBody');
+            const emptyState = document.getElementById('emptyTableState');
+            document.getElementById('recordCount').textContent = `${data.length} รายการ`;
             
-            filteredData = [...rawEventData];
-            updateDashboard();
-        }
-
-        function initCharts() {
-            Chart.defaults.font.family = "'Prompt', sans-serif";
-            Chart.defaults.color = '#64748b';
-
-            const ctxDonut = document.getElementById('categoryDonutChart').getContext('2d');
-            donutChartInstance = new Chart(ctxDonut, {
-                type: 'doughnut',
-                data: {
-                    labels: ['รีไซเคิล', 'ขยะพลังงาน', 'ขยะทำปุ๋ย', 'หลุมฝังกลบ/อื่นๆ'],
-                    datasets: [{
-                        data: [0, 0, 0, 0],
-                        backgroundColor: ['#3b82f6', '#f97316', '#10b981', '#94a3b8'],
-                        borderWidth: 0,
-                        hoverOffset: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '72%',
-                    plugins: {
-                        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } }
-                    }
-                }
-            });
-
-            const ctxTrend = document.getElementById('trendAreaChart').getContext('2d');
-            trendChartInstance = new Chart(ctxTrend, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [
-                        {
-                            label: 'ขยะรวมทั้งหมด (กก.)',
-                            data: [],
-                            borderColor: '#059669',
-                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
-                            fill: true,
-                            tension: 0.3
-                        },
-                        {
-                            label: 'ขยะหมุนเวียน/รีไซเคิล (กก.)',
-                            data: [],
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'transparent',
-                            borderDash: [5, 5],
-                            tension: 0.3
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'top', align: 'end' } },
-                    scales: {
-                        y: { border: { display: false }, grid: { color: '#f1f5f9' }, beginAtZero: true },
-                        x: { grid: { display: false } }
-                    }
-                }
-            });
-
-            const ctxBar = document.getElementById('departmentBarChart').getContext('2d');
-            barChartInstance = new Chart(ctxBar, {
-                type: 'bar',
-                data: {
-                    labels: [],
-                    datasets: [
-                        { label: 'รีไซเคิล', data: [], backgroundColor: '#3b82f6', borderRadius: 4 },
-                        { label: 'ขยะพลังงาน', data: [], backgroundColor: '#f97316', borderRadius: 4 },
-                        { label: 'ขยะทำปุ๋ย', data: [], backgroundColor: '#10b981', borderRadius: 4 },
-                        { label: 'อื่นๆ/ฝังกลบ', data: [], backgroundColor: '#94a3b8', borderRadius: 4 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { stacked: true, grid: { display: false } },
-                        y: { stacked: true, border: { display: false }, grid: { color: '#f1f5f9' } }
-                    },
-                    plugins: { legend: { position: 'top', align: 'end' } }
-                }
-            });
-        }
-
-        function updateDashboard() {
-            let grandTotal = 0;
-            let totalRecycle = 0;
-            let totalEnergy = 0;
-            let totalCompost = 0;
-            let totalOther = 0;
-
-            filteredData.forEach(item => {
-                const t = calculateEventTotals(item);
-                grandTotal += t.total;
-                totalRecycle += t.recycleSum;
-                totalEnergy += t.energySum;
-                totalCompost += t.compostSum;
-                totalOther += t.otherSum;
-            });
-
-            const totalDiverted = totalRecycle + totalEnergy + totalCompost;
-            const overallDiversionRate = grandTotal > 0 ? (totalDiverted / grandTotal) * 100 : 0;
-            const overallLandfillRate = grandTotal > 0 ? (totalOther / grandTotal) * 100 : 0;
-
-            document.getElementById('kpiTotal').textContent = grandTotal.toFixed(1);
-            document.getElementById('kpiDiversion').textContent = overallDiversionRate.toFixed(1);
-            document.getElementById('kpiLandfillRate').textContent = overallLandfillRate.toFixed(1);
-
-            if (donutChartInstance) {
-                donutChartInstance.data.datasets[0].data = [totalRecycle, totalEnergy, totalCompost, totalOther];
-                donutChartInstance.update();
-            }
-
-            updateDynamicCharts();
-            renderTable();
-        }
-
-        function updateDynamicCharts() {
-            if (!trendChartInstance || !barChartInstance) return;
-
-            const sortedEvents = [...filteredData].sort((a, b) => new Date(a.date) - new Date(b.date));
-            const trendLabels = sortedEvents.map(e => e.date);
-            const trendTotals = sortedEvents.map(e => calculateEventTotals(e).total);
-            const trendDiverted = sortedEvents.map(e => calculateEventTotals(e).diverted);
-
-            trendChartInstance.data.labels = trendLabels;
-            trendChartInstance.data.datasets[0].data = trendTotals;
-            trendChartInstance.data.datasets[1].data = trendDiverted;
-            trendChartInstance.update();
-
-            const deptMap = {};
-            filteredData.forEach(e => {
-                const deptName = e.department.split('(')[0].trim() || e.department;
-                if (!deptMap[deptName]) {
-                    deptMap[deptName] = { recycle: 0, energy: 0, compost: 0, other: 0, total: 0 };
-                }
-                const t = calculateEventTotals(e);
-                deptMap[deptName].recycle += t.recycleSum;
-                deptMap[deptName].energy += t.energySum;
-                deptMap[deptName].compost += t.compostSum;
-                deptMap[deptName].other += t.otherSum;
-                deptMap[deptName].total += t.total;
-            });
-
-            const deptKeys = Object.keys(deptMap).sort((a, b) => deptMap[b].total - deptMap[a].total).slice(0, 5);
-            
-            barChartInstance.data.labels = deptKeys;
-            barChartInstance.data.datasets[0].data = deptKeys.map(l => deptMap[l].recycle);
-            barChartInstance.data.datasets[1].data = deptKeys.map(l => deptMap[l].energy);
-            barChartInstance.data.datasets[2].data = deptKeys.map(l => deptMap[l].compost);
-            barChartInstance.data.datasets[3].data = deptKeys.map(l => deptMap[l].other);
-            barChartInstance.update();
-        }
-
-        function renderTable() {
-            const tbody = document.getElementById('eventsTableBody');
-            document.getElementById('tableRecordCount').textContent = filteredData.length;
             tbody.innerHTML = '';
-
-            if (filteredData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">ยังไม่มีข้อมูล หรือไม่พบข้อมูลที่ตรงกับเงื่อนไขการค้นหา</td></tr>`;
-                return;
-            }
-
-            const tableList = [...filteredData].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            tableList.forEach(event => {
-                const t = calculateEventTotals(event);
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50/80 transition-colors border-b border-slate-100";
+            if (data.length === 0) {
+                tbody.parentNode.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+            } else {
+                tbody.parentNode.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
                 
-                tr.innerHTML = `
-                    <td class="py-4 px-6 text-slate-500 text-xs font-medium">${event.date}</td>
-                    <td class="py-4 px-6 font-semibold text-slate-800">${event.activity}</td>
-                    <td class="py-4 px-6 text-slate-600 text-xs">${event.department}</td>
-                    <td class="py-4 px-6 text-right font-bold text-slate-900">${t.total.toFixed(1)}</td>
-                    <td class="py-4 px-6 text-center">
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${t.diversionRate >= 70 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-                            ${t.diversionRate.toFixed(0)}%
-                        </span>
-                    </td>
-                    <td class="py-4 px-6 text-center">
-                        <button onclick="openModal(${event.id})" class="text-emerald-600 hover:text-emerald-800 font-medium text-xs bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors">
-                            ดูรายละเอียด
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
+                data.forEach(r => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-slate-50 transition-colors';
+                    
+                    // Format Date
+                    const d = new Date(r.date);
+                    const dateStr = d.toLocaleDateString('th-TH', { year: '2-digit', month: 'short', day: 'numeric' });
 
-        function openModal(eventId) {
-            const event = rawEventData.find(e => e.id === eventId);
-            if (!event) return;
-
-            const t = calculateEventTotals(event);
-
-            document.getElementById('modalActivityName').textContent = event.activity;
-            document.getElementById('modalDeptAndDate').textContent = `${event.department} • ${event.date} (${event.location || '-'})`;
-            document.getElementById('modalTotal').textContent = `${t.total.toFixed(1)} กก.`;
-            document.getElementById('modalRecorder').textContent = event.recorder || '-';
-            document.getElementById('modalRemarks').textContent = event.remarks || 'ไม่มี';
-
-            const breakdownContainer = document.getElementById('modalBreakdownList');
-            breakdownContainer.innerHTML = `
-                <div class="flex justify-between items-center text-sm p-3 bg-blue-50 text-blue-900 rounded-xl">
-                    <span class="font-medium flex items-center gap-2"><i class="ph-fill ph-recycle"></i> ขยะรีไซเคิล</span>
-                    <span class="font-bold">${t.recycleSum.toFixed(1)} กก.</span>
-                </div>
-                <div class="flex justify-between items-center text-sm p-3 bg-orange-50 text-orange-900 rounded-xl">
-                    <span class="font-medium flex items-center gap-2"><i class="ph-fill ph-fire"></i> ขยะพลังงาน (RDF)</span>
-                    <span class="font-bold">${t.energySum.toFixed(1)} กก.</span>
-                </div>
-                <div class="flex justify-between items-center text-sm p-3 bg-emerald-50 text-emerald-900 rounded-xl">
-                    <span class="font-medium flex items-center gap-2"><i class="ph-fill ph-leaf"></i> ขยะทำปุ๋ย/อินทรีย์</span>
-                    <span class="font-bold">${t.compostSum.toFixed(1)} กก.</span>
-                </div>
-                <div class="flex justify-between items-center text-sm p-3 bg-slate-100 text-slate-800 rounded-xl">
-                    <span class="font-medium flex items-center gap-2"><i class="ph-fill ph-trash"></i> ขยะอื่นๆ / หลุมฝังกลบ</span>
-                    <span class="font-bold">${t.otherSum.toFixed(1)} กก.</span>
-                </div>
-            `;
-
-            document.getElementById('detailModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('detailModal').classList.add('hidden');
-        }
-
-        function exportCSV() {
-            if (filteredData.length === 0) {
-                showToast("ไม่มีข้อมูลสำหรับส่งออก", "error");
-                return;
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-slate-800">${dateStr}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm font-medium text-slate-800">${r.activity}</div>
+                            <div class="text-xs text-slate-500">${r.department} • ${r.location}</div>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="text-sm font-bold text-emerald-600">${r.totals.all.toFixed(2)}</div>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <button onclick="deleteRecord('${r.id}')" class="text-slate-400 hover:text-red-500 transition-colors" title="ลบข้อมูล">
+                                <i class="ph-fill ph-trash text-lg"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
             }
-            
-            let csvContent = "data:text/csv;charset=utf-8,\uFEFFวันที่,กิจกรรม,สถานที่,ส่วนงาน,ผู้บันทึก,รีไซเคิล(กก),พลังงาน(กก),ทำปุ๋ย(กก),ฝังกลบ(กก),รวมทั้งหมด(กก)\n";
-            filteredData.forEach(e => {
-                const t = calculateEventTotals(e);
-                csvContent += `"${e.date}","${e.activity}","${e.location}","${e.department}","${e.recorder}",${t.recycleSum.toFixed(1)},${t.energySum.toFixed(1)},${t.compostSum.toFixed(1)},${t.otherSum.toFixed(1)},${t.total.toFixed(1)}\n`;
-            });
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "mahidol_waste_summary.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast('ส่งออกไฟล์ CSV สำเร็จ');
+
+            // Update Charts
+            renderCharts(sumRecycle, sumEnergy, sumCompost, sumLandfill, data);
         }
+
+        function renderCharts(recycle, energy, compost, landfill, data) {
+            Chart.defaults.font.family = "'Prompt', sans-serif";
+            
+            // Pie Chart
+            const pieCtx = document.getElementById('wastePieChart');
+            const noPie = document.getElementById('noDataPie');
+            
+            if (recycle === 0 && energy === 0 && compost === 0 && landfill === 0) {
+                noPie.classList.remove('hidden');
+                if (pieChartInstance) pieChartInstance.destroy();
+            } else {
+                noPie.classList.add('hidden');
+                if (pieChartInstance) pieChartInstance.destroy();
+                
+                pieChartInstance = new Chart(pieCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['รีไซเคิล', 'พลังงาน', 'ทำปุ๋ย', 'ฝังกลบ'],
+                        datasets: [{
+                            data: [recycle, energy, compost, landfill],
+                            backgroundColor: ['#3b82f6', '#f97316', '#10b981', '#64748b'],
+                            borderWidth: 0,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 15 } }
+                        },
+                        cutout: '70%'
+                    }
+                });
+            }
+
+            // Bar Chart (Top 5 Recent Activities)
+            const barCtx = document.getElementById('wasteBarChart');
+            const noBar = document.getElementById('noDataBar');
+            
+            if (data.length === 0) {
+                noBar.classList.remove('hidden');
+                if (barChartInstance) barChartInstance.destroy();
+            } else {
+                noBar.classList.add('hidden');
+                if (barChartInstance) barChartInstance.destroy();
+                
+                const top5 = data.slice(0, 5).reverse(); // Reverse for chron order in bar chart
+                
+                barChartInstance = new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: top5.map(d => d.activity.length > 15 ? d.activity.substring(0,15)+'...' : d.activity),
+                        datasets: [
+                            { label: 'รีไซเคิล', data: top5.map(d => d.totals.recycle), backgroundColor: '#3b82f6', stack: 'Stack 0' },
+                            { label: 'พลังงาน', data: top5.map(d => d.totals.energy), backgroundColor: '#f97316', stack: 'Stack 0' },
+                            { label: 'ทำปุ๋ย', data: top5.map(d => d.totals.compost), backgroundColor: '#10b981', stack: 'Stack 0' },
+                            { label: 'ฝังกลบ', data: top5.map(d => d.totals.landfill), backgroundColor: '#64748b', stack: 'Stack 0' }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false } // Legend is handled by Pie chart intuitively
+                        },
+                        scales: {
+                            x: { grid: { display: false } },
+                            y: { beginAtZero: true, border: { dash: [4, 4] }, grid: { color: '#f1f5f9' } }
+                        },
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                    }
+                });
+            }
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            // Set default date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('formDate').value = today;
+            
+            initMockData(); // Load demo data
+        };
+
     </script>
 </body>
 </html>
